@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 class ET(Inverter):
     """Class representing inverter of ET/EH/BT/BH or GE's GEH families AKA platform 205 or 745"""
 
-    # Modbus registers from offset 0x891c (35100), count 0x7d (125)
+    # Modbus registers from offset 0x891c (35100), count 0x78 (120)
     __all_sensors: tuple[Sensor, ...] = (
         Timestamp("timestamp", 35100, "Timestamp"),
         Voltage("vpv1", 35103, "PV1 Voltage", Kind.PV),
@@ -472,7 +472,7 @@ class ET(Inverter):
     def __init__(self, host: str, port: int, comm_addr: int = 0, timeout: int = 1, retries: int = 3):
         super().__init__(host, port, comm_addr if comm_addr else 0xf7, timeout, retries)
         self._READ_DEVICE_VERSION_INFO: ProtocolCommand = self._read_command(0x88b8, 0x0021)
-        self._READ_RUNNING_DATA: ProtocolCommand = self._read_command(0x891c, 0x007d)
+        self._READ_RUNNING_DATA: ProtocolCommand = self._read_command(0x891c, 0x0078)
         self._READ_METER_DATA: ProtocolCommand = self._read_command(0x8ca0, 0x2d)
         self._READ_METER_DATA_EXTENDED: ProtocolCommand = self._read_command(0x8ca0, 0x3a)
         self._READ_METER_DATA_EXTENDED2: ProtocolCommand = self._read_command(0x8ca0, 0x7d)
