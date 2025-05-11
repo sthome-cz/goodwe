@@ -82,6 +82,23 @@ class OperationMode(IntEnum):
     ECO_CHARGE = 98
     ECO_DISCHARGE = 99
 
+class EmsOperationPowerMode(IntEnum):
+    """
+    Enumeration of EMS modes.
+
+    Possible values are:
+    SELF_USE - Self use (default)
+    CTRL_BATTERY_CHARGE - Control battery charge - charge battery PV + Grid
+    CTRL_BATTERY_DISCHARGE - Control battery discharge - discharge battery PV + Battery
+    IMPORT_AC - Purchase power from the grid (prefer grid)
+    EXPORT_AC - Sell power to grid - PV is preffered + Battery
+    """
+
+    SELF_USE = 1
+    CTRL_BATTERY_CHARGE = 2
+    CTRL_BATTERY_DISCHARGE = 3
+    IMPORT_AC = 4
+    EXPORT_AC = 5
 
 class Inverter(ABC):
     """
