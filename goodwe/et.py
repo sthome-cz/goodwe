@@ -475,7 +475,7 @@ class ET(Inverter):
         self._READ_RUNNING_DATA: ProtocolCommand = self._read_command(0x891c, 0x0078)
         self._READ_METER_DATA: ProtocolCommand = self._read_command(0x8ca0, 0x2d)
         self._READ_METER_DATA_EXTENDED: ProtocolCommand = self._read_command(0x8ca0, 0x3a)
-        self._READ_METER_DATA_EXTENDED2: ProtocolCommand = self._read_command(0x8ca0, 0x7d)
+        self._READ_METER_DATA_EXTENDED2: ProtocolCommand = self._read_command(0x8ca0, 0x78)
         self._READ_BATTERY_INFO: ProtocolCommand = self._read_command(0x9088, 0x0018)
         self._READ_BATTERY2_INFO: ProtocolCommand = self._read_command(0x9858, 0x0016)
         self._READ_MPPT_DATA: ProtocolCommand = self._read_command(0x89e5, 0x3d)
