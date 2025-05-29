@@ -367,6 +367,9 @@ class ET(Inverter):
         Voltage("battery_discharge_voltage_offline", 45357, "Battery Discharge Voltage (off-line)", Kind.BAT),
         Integer("battery_discharge_depth_offline", 45358, "Battery Discharge Depth (off-line)", "%", Kind.BAT),
 
+        Integer("battery2_discharge_depth", 45381, "Battery 2 Discharge Depth", "%", Kind.BAT),
+        Integer("battery2_discharge_depth_offline", 45383, "Battery 2 Discharge Depth (off-line)", "%", Kind.BAT),
+
         Decimal("power_factor", 45482, 100, "Power Factor"),
 
         Integer("work_mode", 47000, "Work Mode", "", Kind.AC),
