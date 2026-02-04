@@ -367,9 +367,6 @@ class ET(Inverter):
         Voltage("battery_discharge_voltage_offline", 45357, "Battery Discharge Voltage (off-line)", Kind.BAT),
         Integer("battery_discharge_depth_offline", 45358, "Battery Discharge Depth (off-line)", "%", Kind.BAT),
 
-        Integer("battery2_discharge_depth", 45381, "Battery 2 Discharge Depth", "%", Kind.BAT),
-        Integer("battery2_discharge_depth_offline", 45383, "Battery 2 Discharge Depth (off-line)", "%", Kind.BAT),
-
         Decimal("power_factor", 45482, 100, "Power Factor"),
 
         Integer("work_mode", 47000, "Work Mode", "", Kind.AC),
@@ -439,6 +436,12 @@ class ET(Inverter):
         # RW settings of BMS voltage rate
         Integer("bms2_battery_string_rate_v", 47935, "BMS2 Battery String Rate Voltage"),
 
+    )
+
+    # Settings for second battery (only for dual battery inverters)
+    __settings_battery2: tuple[Sensor, ...] = (
+        Integer("battery2_discharge_depth", 45381, "Battery 2 Discharge Depth", "%", Kind.BAT),
+        Integer("battery2_discharge_depth_offline", 45383, "Battery 2 Discharge Depth (off-line)", "%", Kind.BAT),
     )
 
     # Settings added in ARM firmware 19
@@ -549,6 +552,7 @@ class ET(Inverter):
 
         if is_2_battery(self) or self.rated_power >= 25000:
             self._has_battery2 = True
+            self._settings.update({s.id_: s for s in self.__settings_battery2})
 
         if is_745_platform(self) or self.rated_power >= 15000:
             self._has_mppt = True
